@@ -1,6 +1,4 @@
 
-const userInput = process.argv[2];
-
 // function converts hex to rgb
 // @param {string} hex - user input hex value.
 // returns rgb value
@@ -14,5 +12,36 @@ function hexToRgb(hex) {
   } : null;
 }
 
-let result = hexToRgb(userInput);
-console.log(`rgb(${result.r},${result.g},${result.b})`);
+// function converts rgb to hex
+// @param {string} c - user input value for one color.
+// returns hex value of that color.
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+// function returns string of result hex value
+function rgbToHex(r, g, b) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+// if second argument is 'rgbhex' call the reg to hex converter.
+if (process.argv[2]=== 'rgbhex'){
+  const inputInRgb = process.argv[3];
+  let indexOfStartChar = inputInRgb.indexOf('(');
+  let indexOfEndChat = inputInRgb.indexOf(')');
+  let rgbNumString = inputInRgb.slice(indexOfStartChar+1,indexOfEndChat);
+  let rgbNumArr = rgbNumString.split(',');
+  let r = Number(rgbNumArr[0]);
+  let g= Number(rgbNumArr[1]);
+  let b= Number(rgbNumArr[2]);
+
+  console.log(rgbToHex(r, g, b));
+}
+
+// else call the hex to rgb converter
+else {
+  const userInputInHex = process.argv[2];
+  let result = hexToRgb(userInputInHex);
+  console.log(`rgb(${result.r},${result.g},${result.b})`);
+}
