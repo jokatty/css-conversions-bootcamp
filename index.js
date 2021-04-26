@@ -39,6 +39,7 @@ function colorToHsl(color){
     }
 }
 
+
 let colorsArr =['red', 'green', 'blue'];
 
 // if second argument is 'rgbhex' call the reg to hex converter.
@@ -51,12 +52,15 @@ if (process.argv[2]=== 'rgbhex'){
   let r = Number(rgbNumArr[0]);
   let g= Number(rgbNumArr[1]);
   let b= Number(rgbNumArr[2]);
+  
+  console.log('input color formate is rgb');
+  console.log('rgb to hex value:'+rgbToHex(r, g, b));
 
-  console.log(rgbToHex(r, g, b));
 }
 
 else if(colorsArr.includes(process.argv[2])){
   let inputColor = process.argv[2];
+  console.log('input color formate is Colors');
   console.log(colorToHsl(inputColor));
 
 }
@@ -65,5 +69,6 @@ else if(colorsArr.includes(process.argv[2])){
 else {
   const userInputInHex = process.argv[2];
   let result = hexToRgb(userInputInHex);
+  console.log('input color formate is hex');
   console.log(`rgb(${result.r},${result.g},${result.b})`);
 }
