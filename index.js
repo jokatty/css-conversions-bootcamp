@@ -25,6 +25,22 @@ function rgbToHex(r, g, b) {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
+// @param, color(string)
+// returns hsl value of the color
+function colorToHsl(color){
+  	if(color==='red'){
+      return `hsl(0, 100%, 50%)`;
+    }
+    if(color==='green'){
+      return `hsl(120, 100%, 50%)`;
+    }
+    if(color==='blue'){
+      return `hsl(240, 100%, 50%)`;
+    }
+}
+
+let colorsArr =['red', 'green', 'blue'];
+
 // if second argument is 'rgbhex' call the reg to hex converter.
 if (process.argv[2]=== 'rgbhex'){
   const inputInRgb = process.argv[3];
@@ -37,6 +53,12 @@ if (process.argv[2]=== 'rgbhex'){
   let b= Number(rgbNumArr[2]);
 
   console.log(rgbToHex(r, g, b));
+}
+
+else if(colorsArr.includes(process.argv[2])){
+  let inputColor = process.argv[2];
+  console.log(colorToHsl(inputColor));
+
 }
 
 // else call the hex to rgb converter
